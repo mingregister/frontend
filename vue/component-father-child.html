@@ -1,0 +1,59 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue v-bind</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 3. 使用组件 -->
+        <cpnfather></cpnfather>
+    </div>
+    <script>
+
+        // 1. 注册组件构造器对象(son)
+        const cpnson = Vue.extend({
+            template: `
+                <div>
+                    <h2>cpnson</h2>
+                    <p>cpnson: onep</p>
+                    <p>cpnson: twop</p>
+                </div>
+            `
+        })
+
+        // 1. 注册组件构造器对象(father)
+        const cpnfather = Vue.extend({
+            template: `
+                <div>
+                    <h2>cpnfather</h2>
+                    <p>cpnfather: onep</p>
+                    <p>cpnson要放在div里面，不然会使用不了</p>
+                    <cpnson></cpnson>
+                </div>
+            `,
+            components: {
+                cpnson: cpnson
+            }
+        })
+
+
+        const app = new Vue({
+            el: '#app',
+            data: {
+                isAgree: false,
+                hobbies1: [],
+                originHobbies: ["篮球", '足球', '羽毛球', '飞行棋'],
+                hobbies2: []
+            },
+            components: {
+                cpnfather: cpnfather
+            }
+        })
+    </script>
+</body>
+
+</html>

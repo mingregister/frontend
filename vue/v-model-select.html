@@ -1,0 +1,43 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue v-bind</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 1. select单选 -->
+        <select name="abc" id="abc" v-model="fruit">
+            <option value="apple">apple</option>
+            <option value="banana">banana</option>
+            <option value="watermalon">watermalon</option>
+        </select>
+        <h2>你选择的水果是的是: {{fruit}}</h2>
+
+
+        <p>-------------分割线-------------------</p>
+        <!-- select多选 -->
+        <select name="abc" id="abc" v-model="fruits" multiple>
+            <option value="apple">apple</option>
+            <option value="banana">banana</option>
+            <option value="watermalon">watermalon</option>
+        </select>
+        <h2>你选择的水果是的是: {{fruits}}</h2>
+
+        
+    </div>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                fruit: '',
+                fruits: [],
+            }
+        })
+    </script>
+</body>
+
+</html>

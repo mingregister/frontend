@@ -1,0 +1,43 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue v-bind</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h2 v-if="score>=90">优秀</h2>
+        <h2 v-else-if="score>=80">good</h2>
+        <h2 v-else-if="score>=70">jige</h2>
+        <h2 v-else>不及格</h2>
+
+        <h2>{{showMessage}}</h2>
+    </div>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                score: 99
+            },
+            computed: {
+                // 解决方案二
+                showMessage: function(){
+                    if (this.score>=90) {
+                        return '优秀'
+                    } else if(this.score>=80) {
+                        return 'good'
+                    } else if (this.score>=70){
+                        return 'jige'
+                    } else{
+                        return '不及格'
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

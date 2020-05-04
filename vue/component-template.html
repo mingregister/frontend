@@ -1,0 +1,49 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue v-bind</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <suggar-cpn></suggar-cpn>
+    </div>
+
+    <!-- 方式一： -->
+    <template id="cpn1">
+        <div>
+            <h1>register in template label</h1>
+        </div>
+    </template>
+
+    <!-- 方式二： -->
+    <script type="text/x-template" id="cpn2">
+        <div>
+            <h1>register in script test/x-templaste</h1>
+        </div>
+    </script>
+
+    <script>
+
+        // 注册组件的快捷方式：语法糖
+        Vue.component('suggar-cpn', {
+            // 注册这里有带有一个'#'
+            template: '#cpn1'
+        })
+
+        const app = new Vue({
+            el: '#app',
+            data: {
+                isAgree: false,
+                hobbies1: [],
+                originHobbies: ["篮球", '足球', '羽毛球', '飞行棋'],
+                hobbies2: []
+            }
+        })
+    </script>
+</body>
+
+</html>

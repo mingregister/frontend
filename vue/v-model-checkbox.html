@@ -1,0 +1,47 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue v-bind</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 1. checkbox单选框 -->
+        <label for="agree">
+            <input type="checkbox" id='agree' v-model="isAgree">同意
+        </label>
+        <h2>你选择的的是: {{isAgree}}</h2>
+        <button :disabled="!isAgree">下一步</button>
+
+
+        <p>-------------分割线-------------------</p>
+        <!-- checkbox多选框 -->
+        <input type="checkbox" value="篮球" v-model="hobbies1">篮球
+        <input type="checkbox" value="足球" v-model="hobbies1">足球
+        <input type="checkbox" value="羽毛球" v-model="hobbies1">羽毛球
+        <input type="checkbox" value="飞行棋" v-model="hobbies1">飞行棋
+        <h2>你的爱好是：{{hobbies1}}</h2>
+
+        <p>-------------分割线: 值绑定，其实就是v-bind的使用-------------------</p>
+        <label v-for="item in originHobbies" :for="item">
+            <input type="checkbox" :value="item" :id="item" v-model="hobbies2">{{item}}
+        </label>
+        <h2>你的爱好是：{{hobbies2}}</h2>
+    </div>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                isAgree: false,
+                hobbies1: [],
+                originHobbies: ["篮球", '足球', '羽毛球', '飞行棋'],
+                hobbies2: []
+            }
+        })
+    </script>
+</body>
+
+</html>
