@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <!-- 除了可包含用于说明html文档的元素，head元素还能用来规定
+  文档与外部资源（如css样式表)的关系，定义内嵌css样式，
+  放置和载入脚本程序 -->
+  <head>
+    <meta charset="utf-8">
+    <title>Example</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <style type="text/css">
+      .class2 {
+        background-color:grey;
+        color:white;
+        padding:5px;
+        margin:2px;
+      }
+      .class1 {
+        font-size:x-large;
+      }
+    </style>
+    <script type="text/javascript">
+      var toggleHidden = function() {
+        var elem = document.getElementById("toggle");
+        if (elem.hasAttribute("hidden")) {
+          elem.removeAttribute("hidden");
+        } else {
+          elem.setAttribute("hidden", "hidden");
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <header>
+      <hgroup>
+        <h1>Things I like </h1>
+        <h2>by Adam Freeman </h2>
+      </hgroup>
+      <nav>
+        <h1>Contents</h1>
+        <ul>
+          <li><a href="#fruitsilike">Fruits</a></li>
+          <ul>
+            <li><a href="#morefruits">Additional Fruits</a></li>
+          </ul>
+          <ul>
+            <li><a href="#tritypes">Kinds of Triathlon</a></li>
+            <li><a href="#mytri">The kind of triathlon I am aiming for</a></li>
+          </ul>
+        </ul>
+      </nav>
+    </header>
+    <section>
+        <h4>first section</h4>
+        <p id="fruits">I also like bananas</p>
+        <a class="class1 class2" href="http://apress.com">Access web site</a>
+        </p>
+        <a class="class2 otherclass" href="http://w3c.org">W3C web site</a>
+    </section>
+    <hr/>
+    <section>
+        <p>i like <code>python</code> and apples</p>
+        I like <a href="/apple.html" target="_blank">apple</a> and meat.</p>
+        I like <a class="link" href="/apple.html" id="firstlink">apple2</a> and meat too.</p>
+        <!-- &pound是实体名称，代表一个字符,这些字符因为
+        被html作为关键字了，不能直接使用，所以要使用它们的实体名称来代替 -->
+        &pound;美元谁不喜欢呢? 对吧
+    </section>
+    <hr/>
+    <section>
+        <form>
+            Name: <input type="text" name="name" accesskey="n"/>
+            </p>
+            Password: <input type="password" name="password" accesskey="p"/>
+            </p>
+            <input type="submit" value="Log in" accesskey="s"/>
+        </form>
+    </section>
+    <hr/>
+    <section>
+        <p contenteditable="true">It is raining right now</p>
+    </section>
+    <hr/>
+    <section>
+        <li contextmenu="ChangeImage" id="changeImage">
+            On the image below, you can fire the "Change Image" action
+            in your Context Menu.<br />
+            <img src="https://developer.mozilla.org/media/img/promote/promobutton_mdn5.png"
+                contextmenu="ChangeImage" id="promoButton" />
+            <menu type="context" id="ChangeImage">
+            <menuitem label="Change Image" onclick="changeImage()"></menuitem>
+            </menu>
+        </li>
+    </section>
+    <hr/>
+    <section>
+        <button onclick="toggleHidden()">Toggle</button>
+        <table>
+        <tr><th>Name</th><th>City</th></tr>
+        <tr><td>Adam Freeman</td><td>London</td></tr>
+        <tr id="toggle" hidden><td>Joe Smith</td><td>New York</td></tr>
+        <tr><td>Anne Jones</td><td>Paris</td></tr>
+        </table>
+    </section>
+    <hr/>
+    <section>
+        You can see other fruits I like <a href="#fruits">here</a>
+    </section>
+    <hr/>
+    <section>
+      <figure>
+        <figcaption>Listing 23.Using the code element</figcaption>
+        <code>
+          var fruits = ["apples", "oranges", "mangoes", "cherries"]; <br>
+          document.writeln("I like" + fruits.length + "fruits")
+        </code>
+      </figure>
+    </section>
+    <hr/>
+    <section>
+        <script type="text/javascript">
+            var elems = document.getElementsByClassName("otherclass");
+            for (i = 0; i<elems.length; i++) {
+                var x = elems[i];
+                x.style.border = "thin solid black";
+                x.style.backgroudColor = "white";
+                x.style.color = "black";
+            }
+            </script>
+            <script type="text/javascript">
+            document.write("This is from script")
+            </script>
+    </section>
+    <hr/>
+    <section>
+        This is <a href="/ajax/ajax.html" target="_blank">ajax</a> example.</p>
+        This is <a href="/ajax/ajax-push1.html" target="_blank">ajax push 1</a> example.</p>
+        This is <a href="/ajax/ajax-push2.html" target="_blank">ajax push 2</a> example.</p>
+        This is <a href="/ajax/ajax-push3-json.html" target="_blank">ajax push 3 send json</a> example.</p>
+        This is <a href="/ajax/ajax-push4-uploadfile.html" target="_blank">ajax push 4 upload file</a> example.</p>
+    </section>
+    <hr/>
+    <section>
+        This is <a href="document-form.html" target="_blank">document form </a> example.</p>
+    </section>
+    <hr/>
+    <section>
+        This is <a href="/css/code-20-4.html" target="_blank">屏幕居中？ </a> example.</p>
+        This is <a href="/css/code-20-15.html" target="_blank">code 20-15 </a> example.</p>
+    </section>
+    <hr/>
+    <section>
+        This is <a href="code-29-1-media.html" target="_blank">get css information</a> example.</p>
+    </section>
+    <hr/>
+    <section>
+        This is <a href="event/onmouseover.html" target="_blank">event: onmouseover</a> example.</p>
+    </section>
+    <hr/>
+    <section>
+      <!--<script src="jquery-3.4.1.js"></script>-->
+      <script>
+        // The jQuery library exposes its methods and properties via two properties of the window object called jQuery and $. 
+        // $ is simply an alias for jQuery and it's often employed because it's shorter and faster to write
+        // jQuery( document ).ready(function() {    // 等价于下面一条
+        $( document ).ready(function() {
+            $( "a" ).click(function( event ) {
+                alert( "The link will no longer take you to jquery.com" );
+                event.preventDefault();
+            });
+        });
+      </script>
+    </section>
+    <hr/>
+  </body>
+</html>

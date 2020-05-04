@@ -1,0 +1,44 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        p.tooggle {
+            float: left;
+            border: medium double black; 
+            width: 20%;
+            margin: 2px;
+            padding: 2px;
+        }
+    </style>
+</head>
+<body>
+    <p class="tooggle">
+       There are lots of different kinds of fruit.there are over 500 varieties of banana alone.By the time we add the countless types of apples, orange,and other well-known fruit,we are faced with thousands of choices.
+    </p>
+    <p class="toggle">
+        second aaaaa aaaaa  aaa aaaaa  aaaaa aa aaaa a aaa aaaaa  aaaaa aa aaaaa aa aaaaa aaa aaaaa aaa aaaaa aaaaa a aaaaa  aaaaa aa aaaaa aaa aaaaa a aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aa
+    </p>
+    <p>
+        ccccc ccccc ccccc ccccc ccccc ccccc ccccc ccccc ccccc ccccc ccccc ccccc ccccc ccccc ccccc ccccc ccccc ccccc ccccc ccccc ccccc ccccc ccccc ccccc ccccc ccccc ccccc ccccc ccccc ccccc ccccc ccccc ccccc ccccc ccccc ccccc ccccc ccccc ccccc ccccc ccccc ccccc ccccc ccccc ccccc ccccc ccccc cc
+    </p>
+    <p>
+        <button>Left</button>
+        <button>Right</button>
+        <button>None</button>
+    </p>
+    <script>
+        var buttons = document.getElementsByTagName("BUTTON");
+        for (var i = 0; i < buttons.length; i++) {
+            buttons[i].onclick = function(e) {
+                var elements = document.getElementsByClassName("toggle");
+                for (var j = 0; j < elements.length; j++) {
+                    elements[j].style.cssFloat = e.target.innerHTML;
+                }
+            };
+        }
+    </script>
+</body>
+</html>

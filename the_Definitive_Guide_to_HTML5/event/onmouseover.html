@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style type="text/css">
+      p {
+          background: gray;
+          color: white;
+          padding: 5px;
+          margin: 5px;
+          border: thin solid black;
+      }
+    </style>
+    <script type="text/javascript">
+        function handleMouseOver(elem){
+            elem.style.background='white';
+            elem.style.color='black';
+        }
+        function handleMouseOut(elem){
+            elem.style.removeProperty('color');
+            elem.style.removeProperty('background');
+        }
+    </script>
+</head>
+<body>
+    <p onmouseover="this.style.background='white'; this.style.color='black'"
+       onmouseout="this.style.removeProperty('color'); this.style.removeProperty('background')">
+        没有使用函数
+    </p>
+    <p onmouseover="handleMouseOver(this)" onmouseout="handleMouseOut(this)">
+        使用函数，但是作用都是一样的。
+    </p>
+    <p class="domp">
+        使用DOM和事件对象
+    </p>
+    <p id="block2" class="domp2">
+        addEventListener and removeEventListener
+    </p>
+    <button id="pressme"> Press me</button>
+    <p id="block3" class="domp3">
+        事件类型探测
+    </p>
+    <script type="text/javascript">
+        // // getElementById是返回单个，不是返回数组
+        // var pElems = document.getElementById("domp");
+        var pElems = document.getElementsByClassName("domp")
+        for (var i = 0; i < pElems.length; i++){
+            pElems[i].onmouseover = handleMouseOver2;
+            pElems[i].onmouseout = handleMouseOut2;
+        }
+
+        // #################
+        var pElems2 = document.getElementsByClassName("domp2");
+        for (var i = 0; i < pElems2.length; i++){
+            pElems2[i].addEventListener("mouseover", handleMouseOver2);
+            pElems2[i].addEventListener("mouseout", handleMouseOut2);
+        }
+        document.getElementById("pressme").onclick = function(){
+            document.getElementById("block2").removeEventListener("mouseout", handleMouseOut2);
+        }
+        // #################
+        var pElems3 = document.getElementsByClassName("domp3");
+        for (var i = 0; i < pElems3.length; i++){
+            pElems3[i].onmouseover=handleMouseEvent;
+            pElems3[i].onmouseout=handleMouseEvent;
+        }
+
+        function handleMouseOver2(e){
+            e.target.style.background='white';
+            e.target.style.color='black';
+        }
+        function handleMouseOut2(e){
+            e.target.style.removeProperty('color');
+            e.target.style.removeProperty('background');
+        }
+
+        function handleMouseEvent(e){
+            if (e.type == "mouseover"){
+                e.target.style.background = "white";
+                e.target.style.color = "black";
+            } else {
+                e.target.style.removeProperty("color");
+                e.target.style.removeProperty("background");
+            }
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Ajax push example</title>
+    <style>
+        .table {display: table;}
+        .row {display: table-row;}
+        .cell {
+            display: table-cell;
+            padding: 5px;
+        }
+        .label {text-align: right;}
+    </style>
+</head>
+<body>
+    <form action="http://mystatic.com:38088/form" id="fruitform" method="post">
+        <div class="table">
+            <div class="row">
+                <div class="cell label">Bananas:</div>
+                <div class="cell"><input name="bananas" value="2"/></div>
+            </div>
+            <div class="row">
+                <div class="cell label">Apples:</div>
+                <div class="cell"><input name="apples" value="5"/></div>
+            </div>
+            <div class="row">
+                    <div class="cell label">Cherries:</div>
+                    <div class="cell"><input name="cherries" value="20"/></div>
+            </div>
+            <div class="row">
+                    <div class="cell label">Totals:</div>
+                    <div id="results" class="cell">0 items</div>
+            </div>
+        </div>
+            <button id="submit" type="submit"> Submit Form</button>
+    </form>
+    <script>
+        document.getElementById("submit").onclick = handleButtonPress;
+
+        var httpRequest;
+
+        function handleButtonPress(e) {
+            //对表单里的button元素而言，其默认行为是用常规的非Ajax方式提交表单。这里不想让他发生，所以调用了preventDefault方法
+            e.preventDefault();
+
+            var form = document.getElementById("fruitform");
+
+            //收集并格式化各个input的值
+            var formData = "";
+            var inputElements = document.getElementsByTagName("input");
+            for (var i = 0; i < inputElements.length; i++) {
+                formData += inputElements[i].name + "="
+                    + inputElements[i].value + "&";
+            }
+
+            httpRequest = new XMLHttpRequest();
+            console.log('did you do this?')
+            httpRequest.onreadystatechange = handleResponse;
+            console.log('did you do this too?')
+            //数据必须通过POST方法发送给服务器，并读取了HTMLFormElement的action属性获得了请求需要发送的URL
+            httpRequest.open("POST", form.action);
+            //添加标头来告诉服务器准备接受的数据格式
+            httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            //把想要发送给服务器的字符串作为参数传递给send方法
+            httpRequest.send(formData);
+        }
+
+        function handleResponse() {
+            // 这里是在f12的console里面看的.
+            console.log('do i receive response???')
+            if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+                document.getElementById("results").innerHTML = httpRequest.responseText;
+            }
+        }
+
+    </script>
+</body>
+</html>
