@@ -1,0 +1,74 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue v-bind</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <!-- 父组件模板 -->
+    <div id="app">
+        <h2>子组件向父组件通信，使用自定义事件emit</h2>
+        <p>我现在怀疑：所有的事件都是浏览器层面的, 只要你发出了事件，那无论你在那里都可以监听到</p>
+        <!-- 事件流程3: 父组件里面监听子组件发送的itemclick事件，监听到后再触发fatherclick事件 -->
+        <cpn @itemclick="fatherclick"></cpn>
+        <!-- <cpn @itemclick="fatherclick(item)"></cpn>  这里如果传入参数的话，会报错的     -->
+
+    </div>
+
+    <!-- 子组件模板 -->
+    <template id="cpn">
+        <div>
+            <button v-for="item in categories"
+                    @click="childclick(item)">
+                <!-- 事件流程1: 在子组件里面监听click事件，在点击后，触发childclick(item) -->
+                {{item.name}}    
+            </button>
+        </div>
+    </template>
+
+    <script>
+        // 子组件
+        const cpn = {
+            template: '#cpn',
+            data() {
+                return {
+                    categories: [
+                        {id: 'aaa', name: 'hot recommand'},
+                        {id: 'bbb', name: '家用电器'},
+                        {id: 'bbb', name: '电脑数码'},
+                        {id: 'ddd', name: '生活用品'},
+                    ]
+                }
+            },
+            methods: {
+                // 事件流程2: childclick(item)里面再发送自定义事件itemclick
+                childclick(item) {
+                    // 发送自定义事件, itemclick是自定义事件的名称，item是自定义事件的参数
+                    this.$emit('itemclick', item)
+                }
+            }
+        }
+
+        // 父组件
+        const app = new Vue({
+            el: '#app',
+            data: {
+                movies: ["篮球", '足球', '羽毛球', '飞行棋'],
+            },
+            components: {
+                cpn
+            },
+            methods: {
+                // 事件流程4: 触发fatherclick事件
+                fatherclick(item) {
+                    console.log('fatherclick', item);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

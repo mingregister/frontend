@@ -1,0 +1,66 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue v-bind</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>父组件向子组件通信，使用props</p>
+        <!-- 3. 使用v-bind将父组件的movies传到子组件的cmoviess -->
+        <suggar-cpn v-bind:cmovies="movies" v-bind:cmessage="message"></suggar-cpn>
+
+    </div>
+
+    <template id="cpn1">
+        <div>
+            <ul>
+                <li v-for="item in cmovies">{{item}}</li>
+            </ul>
+            <h2>{{cmessage}}</h2>
+        </div>
+    </template>
+
+    <script>
+
+        Vue.component('suggar-cpn', {
+            template: '#cpn1',
+            // 2. 这里定义props,里面写子组件的变量，如：cmovies， 有两种方式，这里是方式一：列表
+            // props: ["cmovies", "cmessage"]
+
+            // 方式二：对象
+            props: {
+                // // 2.1 类型限制
+                // cmovies: Array,
+                // cmessage: String
+
+                // 2.2 提供默认值
+                cmovies: {
+                    type: Array,
+                    default: [
+                        '海贼王',
+                        '海尔兄弟'
+                    ]
+                },
+                // 由于目前v-bind不支持驼峰命名，如果写了如: cMessage，那在引用的时候，要改成c-message !!!
+                cmessage: {
+                    type: String,
+                    default: '这个是我提供的默认值'
+                }
+            }
+        })
+
+        const app = new Vue({
+            el: '#app',
+            data: {
+                // 1. 父组件定义一个变量
+                movies: ["篮球", '足球', '羽毛球', '飞行棋'],
+            }
+        })
+    </script>
+</body>
+
+</html>

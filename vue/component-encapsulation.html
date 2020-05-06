@@ -1,0 +1,70 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue v-bind</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <suggar-cpn></suggar-cpn>
+        <suggar-cpn></suggar-cpn>
+        <suggar-cpn></suggar-cpn>
+    </div>
+
+    <template id="cpn1">
+        <div>
+            <h1>封装计数器</h1>
+            <p>component里的data必须是一个对象(函数),如：</p>
+            <textarea name="haha" id="" cols="50" rows="10">
+                data() {
+                    return {
+                        counter: 0,
+                    }
+                },
+            </textarea>
+            <p>----------</p>
+            <h1>计数器: {{counter}}</h1>
+            <button @click="add">+</button>
+            <button @click="sub">-</button>
+        </div>
+    </template>
+
+    <script>
+
+        // 注册组件的快捷方式：语法糖
+        Vue.component('suggar-cpn', {
+            // 注册这里有带有一个'#'
+            template: '#cpn1',
+            // 这里的data必须是一个对象
+            // 并且组件里面的变量也只能在这里定义，如果在Vue实例里面定义是不生效的。
+            data() {
+                return {
+                    counter: 0,
+                }
+            },
+            methods: {
+                add: function(){
+                    this.counter ++
+                },
+                sub: function(){
+                    this.counter--
+                }
+            }
+        })
+
+        const app = new Vue({
+            el: '#app',
+            data: {
+                isAgree: false,
+                hobbies1: [],
+                originHobbies: ["篮球", '足球', '羽毛球', '飞行棋'],
+                hobbies2: []
+            }
+        })
+    </script>
+</body>
+
+</html>
