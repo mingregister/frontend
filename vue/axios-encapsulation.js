@@ -37,6 +37,8 @@ export function request3 () {
         timeout: 5000
     })
 
+    // axios.defaults.baseURL = 'https://api.example.com';     ???
+    // instance.defaults.baseURL = 'https://api.example.com';  ???
     instance.interceptors.request.use(config => {
         console.log(config);
         return config
@@ -51,7 +53,7 @@ export function request3 () {
         return response;  // 数据都在response.data里面
     }, function (error) {
         // Any status codes that falls outside the range of 2xx cause this function to trigger
-        // Do something with response error
+        // Do something with response error https://github.com/axios/axios#response-schema
         return Promise.reject(error);
     });
 

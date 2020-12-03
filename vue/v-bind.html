@@ -14,8 +14,11 @@
 
 <body>
     <div id="app">
+        {% comment %} 这里的重点是：getClassStatus() {% endcomment %}})}
         <h2 v-bind:class="getClassStatus()">{{message}}</h2>
         <button v-on:click="btnClick">button</button>
+        <h1>----------------</h1>
+        <h1>v-bind是绑定属性,即:"<img src='imagUrl'>" 这样</h1>
     </div>
     <script>
         const app = new Vue({
